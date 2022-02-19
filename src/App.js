@@ -22,13 +22,7 @@ class App extends Component {
 
 	componentDidMount() {
 		this.unsubscribeFromAuth = onAuthStateChanged(auth, (user) => {
-			if (user) {
-				this.setState({ currentUser: user })
-				console.log(`${user.email} ---> Signed In`)
-			} else {
-				this.setState({ currentUser: null })
-				console.log('Signed Out')
-			}
+			this.setState({ currentUser: user })
 		})
 	}
 
@@ -37,9 +31,10 @@ class App extends Component {
 	}
 
 	render() {
+		const { currentUser } = this.state
 		return (
 			<div>
-				<Header />
+				<Header currentUser={currentUser} />
 				<Switch>
 					<Route exact path='/' component={HomePage} />
 					<Route exact path='/shop' component={ShopPage} />

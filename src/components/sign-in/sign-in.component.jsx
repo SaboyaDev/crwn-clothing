@@ -1,18 +1,14 @@
 import { Component } from 'react'
 import FormInput from '../form-input/form-input.component'
-import CustomButton from '../custom-button/custom-button.component'
-
-import {
-	signInWithGoogle,
-	signOutWithGoogle,
-} from '../../firebase/firebase.utils'
-
+import CustomButton from '../custom-buttons/custom-button/custom-button.component'
+import GoogleButton from '../custom-buttons/google-button/google-button.component'
 import './sign-in.styles.scss'
+
+import { signInWithGoogle } from '../../firebase/firebase.utils'
 
 class SignIn extends Component {
 	constructor() {
 		super()
-
 		this.state = {
 			email: '',
 			password: '',
@@ -21,18 +17,16 @@ class SignIn extends Component {
 	// This Sets State dynamically
 	handleInput = (e) => {
 		const { name, value } = e.target
-		// example:  { sth: else }
-		// same as -->  { ["sth"]: else }
-
-		// let id = "sth";
-		// { [id]: else }
 		this.setState({ [name]: value })
 	}
 
 	handleSubmit = (e) => {
 		e.preventDefault()
-
 		this.setState({ email: '', password: '' })
+	}
+
+	sayHello = () => {
+		console.log('clicked')
 	}
 
 	render() {
@@ -61,12 +55,14 @@ class SignIn extends Component {
 						required
 						label='password'
 					/>
-					{/* <CustomButton type='submit'>Sign Out</CustomButton> */}
 				</form>
-				<CustomButton onClick={signInWithGoogle}>
-					Sign In With Google
-				</CustomButton>
-				<CustomButton onClick={signOutWithGoogle}>Sign Out</CustomButton>
+				<div className='buttons'>
+					<CustomButton onClick={this.sayHello} type='submit'>
+						Sign In
+					</CustomButton>
+					<GoogleButton onClick={signInWithGoogle} />
+					{/* <GoogleButton onClick={signInWithGoogle} isGoogleSignIn /> */}
+				</div>
 			</div>
 		)
 	}

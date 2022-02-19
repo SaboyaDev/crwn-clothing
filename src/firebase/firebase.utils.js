@@ -1,14 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
-import {
-	getAuth,
-	signInWithPopup,
-	GoogleAuthProvider,
-	signOut,
-	onAuthStateChanged,
-} from 'firebase/auth'
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
-import { getAnalytics } from 'firebase/analytics' //NOt GOING TO USE FOR NOW!
+// import { getAnalytics } from 'firebase/analytics' //NOt GOING TO USE FOR NOW!
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -25,7 +19,7 @@ const firebaseConfig = {
 // Initialize Firebase
 // **************************************************************
 const app = initializeApp(firebaseConfig)
-const analytics = getAnalytics(app) //NOt GOING TO USE FOR NOW!
+// const analytics = getAnalytics(app) //NOt GOING TO USE FOR NOW!
 
 // AUTHENTICATION
 // **************************************************************
@@ -35,12 +29,11 @@ export const auth = getAuth()
 // **************************************************************
 const provider = new GoogleAuthProvider()
 
-// Google Sign-In/Out
+// Google Sign-In
 // **************************************************************
 export const signInWithGoogle = () => signInWithPopup(auth, provider)
-export const signOutWithGoogle = () => signOut(auth)
 // **************************************************************
 
 // DATABASE
 // **************************************************************
-export const firestore = getFirestore() //DataBase
+export const db = getFirestore(app) //DataBase

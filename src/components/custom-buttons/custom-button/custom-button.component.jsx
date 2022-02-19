@@ -1,13 +1,12 @@
 import './custom-button.styles.scss'
 
 const CustomButton = ({ children, ...otherProps }) => {
+	// console.log(otherProps)
 	return (
-		<button className='login-with-google-btn' {...otherProps}>
+		<button className='button' {...otherProps}>
 			{children}
 		</button>
 	)
 }
 
 export default CustomButton
-
-// className='custom-button'
